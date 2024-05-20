@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Add Category</h3>
+<p>
+    <a th:href="@{/Category}">
+        Back to category list
+    </a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/Category/saveCategory}" th:object="${category}"
+          method="POST">
+            <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Category Name</label>
+            <input type="text" th:field="*{catName}"/>
+            <p th:if="${#fields.hasErrors('catName')}" th:errors="*{catName}" style="color: red"></p>
+        </div>
+        <div>
+            <label>Category Status</label>
+            <select th:field="*{catStatus}">
+                <option value="true">Bán</option>
+                <option value="false">Không Bán</option>
+            </select>
+            <p th:if="${#fields.hasErrors('catStatus')}" th:errors="*{catStatus}" style="color: red"></p>
+        </div>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

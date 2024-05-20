@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Add Product</h3>
+<p>
+    <a th:href="@{/Product}">
+        Back to product list
+    </a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/Product/saveProduct}" th:object="${product}"
+          method="POST" enctype="multipart/form-data">
+        <input type="hidden" readonly="true" th:field="*{proId}"/>
+        <div>
+            <label>Product Name</label>
+            <input type="text" th:field="*{proName}"/>
+            <p th:if="${#fields.hasErrors('proName')}" th:errors="*{proName}" style="color: red"></p>
+        </div>
+        <div>
+            <label>Image</label>
+            <input type="file" th:field="*{proImage}"/>
+            <p th:if="${#fields.hasErrors('proImage')}" th:errors="*{proImage}" style="color: red"></p>
+        </div>
+
+        <div>
+            <label>Price</label>
+            <input type="text" th:field="*{price}"/>
+            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red"></p>
+        </div>
+        <div>
+            <label>Stock</label>
+            <input type="text" th:field="*{stock}"/>
+            <p th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" style="color: #ff0000"></p>
+        </div>
+        <div>
+            <label>Product Status</label>
+            <select th:field="*{proStatus}">
+                <option value="true">Bán</option>
+                <option value="false">Không Bán</option>
+            </select>
+            <p th:if="${#fields.hasErrors('proStatus')}" th:errors="*{proStatus}" style="color: red"></p>
+        </div>
+        <div>
+            <label>Category Name</label>
+            <select th:field="*{catId}">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.catName}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('catId')}" th:errors="*{catId}" style="color: red"></p>
+        </div>
+        <input type="submit" value="Adđ"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

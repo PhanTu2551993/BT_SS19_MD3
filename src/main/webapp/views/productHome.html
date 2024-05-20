@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>PRODUCT</h3>
+<p>
+    <a th:href="@{/Product/createProduct}">
+        Add new Product
+    </a>
+</p>
+
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category Name</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${product}">
+        <td th:text="${p.proId}"></td>
+        <td><img width="100" height="100" th:src="@{'/images/' + ${p.proImage}}" alt=""></td>
+        <td th:text="${p.proName}"></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.stock}"></td>
+        <td th:text="${p.cat.catName}"></td>
+        <td th:text="${p.proStatus}"></td>
+        <td><a th:href="@{/Product/editProduct/{id}(id=${p.proId})}">edit</a></td>
+        <td><a th:href="@{/Product/deleteProduct/{id}(id=${p.proId})}" onclick="return confirm('Ban chac chua? 🤡')">delete</a></td>
+        <td><a th:href="@{/Product/viewProduct/{id}(id=${p.proId})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

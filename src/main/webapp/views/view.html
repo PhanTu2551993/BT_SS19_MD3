@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>View Employee</h3>
+<p>
+    <a th:href="@{/Employee}">
+        Back to employee list
+    </a>
+</p>
+<div id="detail">
+    <div class="cusdetail">
+        <label>ID:</label>
+        <label th:text="${employee.empId}"></label>
+    </div>
+    <div class="cusdetail">
+        <label>Name:</label>
+        <label th:text="${employee.empName}"></label>
+    </div>
+    <div class="cusdetail">
+        <label>Address :</label>
+        <label th:text="${employee.address}"></label>
+    </div>
+    <div class="cusdetail">
+        <label>Birthday :</label>
+        <label th:text="${employee.dob}"></label>
+    </div>
+    <div class="cusdetail">
+        <label>Phone :</label>
+        <label th:text="${employee.phone}"></label>
+    </div>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
